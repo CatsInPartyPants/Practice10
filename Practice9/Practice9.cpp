@@ -238,11 +238,12 @@ void showBoard(int a, int b) {
 // проверка возможности хода
 
 bool isStepOfHorse(int h, int v) {
-	if(abs(horizontal -h) == 2 && abs((vertical - v)) == 1){
+	if(abs(horizontal -h) == 2 && abs((vertical - v)) == 1 && h <= 8 && v<= 8){
+
 		horizontal = h;
 		vertical = v;
 	}
-	else if (abs(horizontal - h) == 1 && abs((vertical - v)) == 2){
+	else if (abs(horizontal - h) == 1 && abs((vertical - v)) == 2 && h <= 8 && v <= 8){
 		horizontal = h;
 		vertical = v;
 	}
