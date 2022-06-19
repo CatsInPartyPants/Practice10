@@ -30,6 +30,8 @@ void showBoard(int a = 10, int b = 10);
 //функция для проверки хода коня
 
 bool isStepOfHorse(int h, int v);
+// menu
+void main_menu();
 
 
 int main()
@@ -64,12 +66,7 @@ int main()
 	*/
 	
 	showBoard();
-	cout << "Игра: Ход коня\n";
-	cout << "Куда поставить коня?\n"
-		<< "Число по горизонтали: ";
-	cin >> horizontal;
-	cout << "Число по вертикали: ";
-	cin >> vertical;
+	main_menu();
 	system("CLS");
 	showBoard(horizontal, vertical);
 
@@ -213,7 +210,16 @@ void show(int arr[], int size) {
 	cout << endl;
 }
 
+// menu
 
+void main_menu() {
+	cout << "Игра: Ход коня\n";
+	cout << "Куда поставить коня?\n"
+		<< "Число по горизонтали: ";
+	cin >> horizontal;
+	cout << "Число по вертикали: ";
+	cin >> vertical;
+}
 // ход коня
 
 void showBoard(int a, int b) {
