@@ -2,24 +2,40 @@
 
 using namespace std;
 
-void showRec(int n, int k);
-int max_of_two(int a, int b);
-char result_simbol(int a, int b);
-void factorial(int a);
-bool is_simple(int n);
-int cube(int a);
-bool is_positive(int a);
-void f_arr(int arr[]);
-void max_min_arr(int arr[], int a);
-void change_arr(int arr[], int a);
-int simple_in_arr(int arr[], int);
-void sortArray(int arr[], int size, bool flag = false);
-void sortedASC(int arr[], int size);
-void sortedDESC(int arr[], int size);
-void show(int arr[], int size);
+int horizontal, vertical; // координаты коня
+
+
+void showRec(int n, int k); // прямоугольник с заданными сторонами
+int max_of_two(int a, int b); // максимум из двух
+char result_simbol(int a, int b); // выводится символ, < > =
+void factorial(int a); // факториал числа
+bool is_simple(int n); // простое ли число
+int cube(int a); // возводит в куб
+bool is_positive(int a); // положительное или нет
+void f_arr(int arr[]); // меняет число в массиве
+void max_min_arr(int arr[], int a); // максимальное минимальное в массиве
+void change_arr(int arr[], int a); // меняет массив reverse
+int simple_in_arr(int arr[], int); // сколько простых чисел в массиве
+void sortArray(int arr[], int size, bool flag = false); // сортировка по флагу
+void sortedASC(int arr[], int size); // сортировка по возрастанию
+void sortedDESC(int arr[], int size); // сортировка по убыванию
+void show(int arr[], int size); // показывает содержимое массива
+
+// ход коня
+
+// функция для отображения доски
+
+void showBoard(int a = 10, int b = 10);
+
+//функция для проверки хода коня
+
+bool isStepOfHorse(int h, int v);
+
 
 int main()
 {
+	setlocale(LC_ALL, "");
+	/*
 	showRec(5, 20);
 	cout << max_of_two(20, 11) << endl;
 	cout << result_simbol(10, 2) << endl;
@@ -45,7 +61,34 @@ int main()
 	show(arr2, 5);
 	sortArray(arr2, 5, true);
 	show(arr2, 5);
+	*/
 	
+	showBoard();
+	cout << "Игра: Ход коня\n";
+	cout << "Куда поставить коня?\n"
+		<< "Число по горизонтали: ";
+	cin >> horizontal;
+	cout << "Число по вертикали: ";
+	cin >> vertical;
+	system("CLS");
+	showBoard(horizontal, vertical);
+
+	int h, v;
+	do {
+		cout << "Куда вы хотите переместить коня?\n"
+			<< "Число по горизонтали: ";
+		cin >> h;
+		cout << "Число по вертикали: ";
+		cin >> v;
+		system("CLS");
+		if (isStepOfHorse(h, v) == true) {
+			showBoard(horizontal, vertical);
+		}
+		else {
+			showBoard(horizontal, vertical);
+		}
+	} while (h >0 && v > 0);
+		
 }
 
 void showRec(int n, int k)
@@ -168,4 +211,44 @@ void show(int arr[], int size) {
 		cout << arr[i] << " ";
 	}
 	cout << endl;
+}
+
+
+// ход коня
+
+void showBoard(int a, int b) {
+	char c = '_';
+	char h = 'K';
+	cout << "  ";
+	for (int i = 1; i < 9; i++) {
+		cout << i << " ";
+	}
+	cout << endl;
+
+	for (int i = 1; i < 9; i++) {
+		cout << i;
+		for (int j = 1; j < 9; j++) {
+			cout << "|";
+			(a == i && b == j) ? cout << h : cout << c;
+		}
+		cout << "|" << endl;
+	}
+}
+
+// проверка возможности хода
+
+bool isStepOfHorse(int h, int v) {
+	if(abs(horizontal -h) == 2 && abs((vertical - v)) == 1){
+		horizontal = h;
+		vertical = v;
+	}
+	else if (abs(horizontal - h) == 1 && abs((vertical - v)) == 2){
+		horizontal = h;
+		vertical = v;
+	}
+	else {
+		cout << "Нельзя так ходить!\n" << endl;
+		return false;
+	}
+	return true;
 }
